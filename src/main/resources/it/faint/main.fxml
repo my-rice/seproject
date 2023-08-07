@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckMenuItem?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+
+<AnchorPane prefHeight="461.0" prefWidth="676.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.faint.controller.MainController">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="344.0" prefWidth="407.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <MenuBar focusTraversable="false" prefWidth="676.0" style="-fx-background-color: lightgray;">
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                        <MenuItem mnemonicParsing="false" onAction="#onLoad" text="Open..." />
+                    <MenuItem mnemonicParsing="false" onAction="#onSave" text="Save" />
+                        <MenuItem mnemonicParsing="false" onAction="#onSaveAs" text="Save as..." />
+                        <MenuItem mnemonicParsing="false" onAction="#onExit" text="Exit" />
+                  </items>
+                </Menu>
+                  <Menu mnemonicParsing="false" text="View">
+                     <items>
+                        <CheckMenuItem fx:id="gridMenuItem" mnemonicParsing="false" onAction="#handleGridToggle" text="Grid" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Settings">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#onGridSettings" text="Grid..." />
+                     </items>
+                  </Menu>
+                <Menu mnemonicParsing="false" text="Edit" visible="false">
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#onCopy" text="Copy" />
+                        <MenuItem mnemonicParsing="false" onAction="#onCut" text="Cut" />
+                        <MenuItem mnemonicParsing="false" onAction="#onDelete" text="Delete" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <ToolBar focusTraversable="false" prefHeight="65.0" prefWidth="676.0" style="-fx-background-color: GAINSBORO;">
+              <items>
+                  <VBox fx:id="historyGroup" alignment="CENTER" prefHeight="56.0" prefWidth="93.0">
+                     <children>
+                        <HBox alignment="TOP_CENTER" prefHeight="34.0" prefWidth="104.0" spacing="10.0">
+                           <children>
+                              <Button fx:id="undoButton" focusTraversable="false" mnemonicParsing="false" onAction="#onUndo" prefHeight="28.0" prefWidth="16.0">
+                                 <graphic>
+                                    <ImageView fitHeight="28.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@img/undo_FILL0_wght400_GRAD0_opsz48.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="redoButton" focusTraversable="false" mnemonicParsing="false" onAction="#onRedo" prefHeight="28.0" prefWidth="16.0">
+                                 <graphic>
+                                    <ImageView fitHeight="28.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" style="-fx-scale-x: -1;">
+                                       <image>
+                                          <Image url="@img/undo_FILL0_wght400_GRAD0_opsz48.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <Label text="History" />
+                     </children>
+                  </VBox>
+                  <Line endY="50.0" stroke="#949292" strokeLineCap="ROUND" style="-fx-: red;" />
+                  <VBox fx:id="historyGroup1" alignment="CENTER" prefHeight="56.0" prefWidth="47.0">
+                     <children>
+                        <HBox alignment="TOP_CENTER" prefHeight="34.0" prefWidth="104.0" spacing="10.0">
+                           <children>
+                              <Button fx:id="deleteButton" focusTraversable="false" mnemonicParsing="false" onAction="#onDelete" prefHeight="25.0" prefWidth="29.0">
+                                 <graphic>
+                                    <ImageView fitHeight="28.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@img/delete_FILL0_wght400_GRAD0_opsz48.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <Label />
+                     </children>
+                  </VBox>
+                  <Line endY="50.0" stroke="#949292" strokeLineCap="ROUND" style="-fx-: red;" />
+                  <VBox fx:id="clipboardGroup" alignment="CENTER" prefHeight="50.0" prefWidth="130.0">
+                     <children>
+                        <HBox alignment="TOP_CENTER" prefHeight="33.0" prefWidth="130.0" spacing="10.0">
+                           <children>
+                              <Button fx:id="copyButton" focusTraversable="false" mnemonicParsing="false" onAction="#onCopy" prefHeight="28.0" prefWidth="16.0">
+                                 <graphic>
+                                    <ImageView fitHeight="28.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@img/content_copy_FILL0_wght400_GRAD0_opsz48.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="cutButton" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onAction="#onCut" prefHeight="28.0" prefWidth="16.0">
+                                 <graphic>
+                                    <ImageView fitHeight="16.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@img/content_cut_FILL0_wght400_GRAD0_opsz48.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="pasteButton" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onAction="#onPaste" prefHeight="28.0" prefWidth="16.0">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="18.0" pickOnBounds="true">
+                                       <image>
+                                          <Image url="@img/content_paste_FILL0_wght400_GRAD0_opsz48.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <Label text="Clipboard" />
+                     </children>
+                  </VBox>
+                  <Line endY="50.0" stroke="#949292" strokeLineCap="ROUND" style="-fx-: red;" />
+                  <VBox alignment="CENTER" prefHeight="50.0" prefWidth="130.0">
+                     <children>
+                        <HBox alignment="TOP_CENTER" prefHeight="33.0" prefWidth="130.0" spacing="10.0">
+                           <children>
+                              <ToggleButton fx:id="cursorTool" focusTraversable="false" mnemonicParsing="false" onAction="#onCursorTool" prefHeight="25.0" prefWidth="29.0">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true">
+                                       <image>
+                                          <Image url="@img/arrow_selector_tool_FILL0_wght400_GRAD0_opsz48.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </ToggleButton>
+                              <ToggleButton fx:id="rectangleTool" focusTraversable="false" mnemonicParsing="false" onAction="#onRectangleTool" prefHeight="25.0" prefWidth="29.0">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true">
+                                       <image>
+                                          <Image url="@img/rectangle.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </ToggleButton>
+                              <ToggleButton fx:id="ellipseTool" focusTraversable="false" mnemonicParsing="false" onAction="#onEllipseTool" prefHeight="25.0" prefWidth="29.0">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true">
+                                       <image>
+                                          <Image url="@img/ellipse.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </ToggleButton>
+                              <ToggleButton fx:id="lineTool" focusTraversable="false" mnemonicParsing="false" onAction="#onLineTool" prefHeight="25.0" prefWidth="29.0">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true">
+                                       <image>
+                                          <Image url="@img/icons8-vertical-line-90.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </ToggleButton>
+                           </children>
+                        </HBox>
+                        <Label text="Tools" />
+                     </children>
+                  </VBox>
+                  <Line endY="50.0" stroke="#949292" strokeLineCap="ROUND" style="-fx-: red;" />
+                  <VBox alignment="CENTER" prefHeight="56.0" prefWidth="90.0">
+                     <children>
+                        <HBox alignment="TOP_CENTER" prefHeight="33.0" prefWidth="130.0" spacing="10.0">
+                           <children>
+                              <ColorPicker fx:id="contourColorPicker" editable="true" focusTraversable="false" onAction="#onContourColorChange" prefHeight="28.0" prefWidth="80.0" />
+                           </children>
+                        </HBox>
+                        <Label text="Contour color" />
+                     </children>
+                  </VBox>
+                  <Line endY="50.0" stroke="#949292" strokeLineCap="ROUND" style="-fx-: red;" />
+                  <VBox alignment="CENTER" prefHeight="56.0" prefWidth="88.0">
+                     <children>
+                        <HBox alignment="TOP_CENTER" prefHeight="33.0" prefWidth="130.0" spacing="10.0">
+                           <children>
+                              <ColorPicker fx:id="fillColorPicker" focusTraversable="false" onAction="#onInnerColorChange" prefHeight="28.0" prefWidth="80.0" />
+                           </children>
+                        </HBox>
+                        <Label text="Fill color" />
+                     </children>
+                  </VBox>
+                  <Line endY="50.0" stroke="#949292" strokeLineCap="ROUND" style="-fx-: red;" />
+                  <VBox fx:id="layerGroup" alignment="CENTER" prefHeight="56.0" prefWidth="93.0">
+                     <children>
+                        <HBox alignment="TOP_CENTER" prefHeight="34.0" prefWidth="104.0" spacing="10.0">
+                           <children>
+                              <Button fx:id="backwardButton" focusTraversable="false" mnemonicParsing="false" onAction="#onToBackward" prefHeight="28.0" prefWidth="16.0">
+                                 <graphic>
+                                    <ImageView fitHeight="28.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@img/sendBackward.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="forwardButton" focusTraversable="false" mnemonicParsing="false" onAction="#onToForward" prefHeight="28.0" prefWidth="16.0">
+                                 <graphic>
+                                    <ImageView fitHeight="28.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@img/bringForward.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="toBackButton" focusTraversable="false" mnemonicParsing="false" onAction="#onToBack" prefHeight="28.0" prefWidth="16.0">
+                                 <graphic>
+                                    <ImageView fitHeight="28.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@img/sendToBack.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="toFrontButton" focusTraversable="false" mnemonicParsing="false" onAction="#onToFront" prefHeight="28.0" prefWidth="16.0">
+                                 <graphic>
+                                    <ImageView fitHeight="28.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@img/bringToFront.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <Label text="Arrange" />
+                     </children>
+                  </VBox>
+              </items>
+            </ToolBar>
+            <ScrollPane fx:id="scrollPane" focusTraversable="false" prefHeight="200.0" prefWidth="821.0" style="-fx-background-color: LIGHTSLATEGREY;" VBox.vgrow="ALWAYS">
+               <content>
+                  <Group>
+                     <!--<Pane fx:id="canvasPane" maxHeight="500.0" maxWidth="1000.0" prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: WHITE;" />-->
+                     <fx:include fx:id="canvas" source="canvas.fxml" />
+                  </Group>
+               </content>
+            </ScrollPane>
+            
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
